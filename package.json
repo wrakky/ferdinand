@@ -1,0 +1,87 @@
+{
+  "name": "Ferdinand",
+  "productName": "Ferdinand",
+  "version": "1.0.0",
+  "description": "Web service aggregator with built in notifications",
+  "icon": "./resources/icons/color/64x64.png",
+  "main": ".webpack/main",
+  "scripts": {
+    "start": "electron-forge start",
+    "debug": "npm start -- --inspect-electron",
+    "package": "electron-forge package",
+    "make": "electron-forge make",
+    "publish": "electron-forge publish",
+    "lint": "echo \"No linting configured\""
+  },
+  "keywords": [],
+  "author": {
+    "name": "Peter Newnham",
+    "email": "peter.newnham@appsbroker.com"
+  },
+  "license": "MIT",
+  "config": {
+    "forge": {
+      "packagerConfig": {},
+      "makers": [
+        {
+          "name": "@electron-forge/maker-deb",
+          "config": {
+            "options": {
+              "name": "Ferdinand",
+              "icon": "./resources/icons/color/64x64.png",
+              "description": "Web service aggregator with built in notifications"
+            }
+          }
+        }
+      ],
+      "plugins": [
+        [
+          "@electron-forge/plugin-webpack",
+          {
+            "mainConfig": "./webpack.main.config.js",
+            "renderer": {
+              "config": "./webpack.renderer.config.js",
+              "entryPoints": [
+                {
+                  "html": "./packages/app/ui/index.html",
+                  "js": "./packages/app/ui/index.tsx",
+                  "name": "main_window"
+                }
+              ]
+            }
+          }
+        ]
+      ]
+    }
+  },
+  "dependencies": {
+    "copy-webpack-plugin": "5.0.5",
+    "electron-is-dev": "1.1.0",
+    "electron-squirrel-startup": "1.0.0",
+    "react": "16.12.0",
+    "react-dom": "16.12.0",
+    "uuid": "3.3.3"
+  },
+  "devDependencies": {
+    "@electron-forge/cli": "6.0.0-beta.45",
+    "@electron-forge/maker-deb": "6.0.0-beta.45",
+    "@electron-forge/maker-rpm": "6.0.0-beta.45",
+    "@electron-forge/maker-squirrel": "6.0.0-beta.45",
+    "@electron-forge/maker-zip": "6.0.0-beta.45",
+    "@electron-forge/plugin-webpack": "6.0.0-beta.45",
+    "@marshallofsound/webpack-asset-relocator-loader": "^0.5.0",
+    "@types/react": "16.9.11",
+    "@types/react-dom": "16.9.4",
+    "@types/styled-components": "4.4.0",
+    "@types/uuid": "3.4.6",
+    "css-loader": "^3.0.0",
+    "electron": "7.1.2",
+    "fork-ts-checker-webpack-plugin": "3.1.0",
+    "node-loader": "^0.6.0",
+    "style-loader": "^0.23.1",
+    "styled-components": "4.4.1",
+    "ts-loader": "6.2.1",
+    "typescript": "3.7.2",
+    "url-loader": "2.3.0"
+  }
+}
